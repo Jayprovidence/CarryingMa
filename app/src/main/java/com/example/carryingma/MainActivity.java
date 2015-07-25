@@ -64,10 +64,10 @@ public class MyActivity extends ActionBarActivity implements OnClickListener
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("data", strTxt));
 
-        try
-        {
-
-        }
+//        try
+//        {
+//
+//        }
     }
 
     @Override
