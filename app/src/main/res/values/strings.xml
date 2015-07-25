@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CarryingMa</string>
+
+    <string name="help_txt">請輸入文字以便使用POST傳送:</string>
+    <string name="txt_message_hint">請輸入文字</string>
+    <string name="send">送出</string>
+    <string name="action_settings">Settings</string>
+</resources>
