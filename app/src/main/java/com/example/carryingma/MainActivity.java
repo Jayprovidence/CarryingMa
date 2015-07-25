@@ -18,6 +18,7 @@ import org.apache.http.util.EntityUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,7 +27,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-public class MyActivity extends ActionBarActivity implements OnClickListener
+public class MainActivity extends ActionBarActivity implements OnClickListener
 {
     private EditText txtMessage;
     private Button sendBtn;
@@ -35,7 +36,7 @@ public class MyActivity extends ActionBarActivity implements OnClickListener
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ui0725);
+        setContentView(R.layout.activity_main);
 
         txtMessage = (EditText)findViewById(R.id.txt_message);
         sendBtn = (Button)findViewById(R.id.send_bnt);
@@ -60,6 +61,7 @@ public class MyActivity extends ActionBarActivity implements OnClickListener
 
     private String sendPostDataToInternet(String strTxt)
     {
+        String a="";
         HttpPost httpPost = new HttpPost(uriAPI);
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("data", strTxt));
@@ -68,13 +70,14 @@ public class MyActivity extends ActionBarActivity implements OnClickListener
 //        {
 //
 //        }
+        return a;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_ui0725, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
