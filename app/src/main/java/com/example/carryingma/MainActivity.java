@@ -35,7 +35,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 {
     private EditText txtMessage;
     private Button sendBtn;
-    private String uriAPI;
+    private String uriAPI = "http://192.168.1.164/httpPostTest.php";
     //    ?????????
     protected static final int REFRESH_DATA = 0x00000001;
     //    ??UI Thread???Handler,?????Thread????
