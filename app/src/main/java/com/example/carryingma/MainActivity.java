@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NavigableMap;
 
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -15,6 +16,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import android.os.Message;
+import android.os.Handler;
+import android.util.Log;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,7 +35,26 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 {
     private EditText txtMessage;
     private Button sendBtn;
-    private String uriAPI = "http://0.0.0.0/httpPostTest.php";
+    private String uriAPI;
+    //    ?????????
+    protected static final int REFRESH_DATA = 0x00000001;
+    //    ??UI Thread???Handler,?????Thread????
+    Handler mhandler = new Handler()
+    {
+        public void handleMessage(Message msg)
+        {
+            switch (msg.what)
+            {
+                case REFRESH_DATA:
+                    String result = null;
+                    if (msg.obj instanceof String)
+                        result = (String) msg.obj;
+                    if(result != null)
+                        Toast.makeText(MainActivity.this,result,Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+    };
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -48,75 +71,60 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
     {
         if(v == sendBtn)
         {
-            String msg = null;
             if (txtMessage != null)
             {
-                msg = txtMessage.getEditableText().toString();
-                String result = sendPostDataToInternet(msg);
-                if (result != null)
-                    Toast.makeText(this, result,Toast.LENGTH_LONG).show();
+//                ?????????
+                String msg = txtMessage.getEditableText().toString();
+
+//                ????Thread??????????Runnable???Thread??
+                Thread t = new Thread(new sendPostRunnable(msg));
+                t.start();
             }
         }
     }
 
     private String sendPostDataToInternet(String strTxt)
     {
-        /*建立HTTP post連線*/
+        /*??HTTP post??*/
         HttpPost httpRequest = new HttpPost(uriAPI);
-        /* Post運作傳送變數必須用NameValuePair[]陣列儲存*/
+        /* Post?????????NameValuePair[]????*/
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("data", strTxt));
 
         try
         {
-//            發出HTTP Request
+//            ??HTTP Request
             httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-//            取得HTTP Request
+//            ??HTTP Request
             HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequest);
-//            若狀態碼為200 OK
+//            ?????200 OK
             if (httpResponse.getStatusLine().getStatusCode() == 200)
             {
-//                取出回應字串
+//                ??????
                 String strResult = EntityUtils.toString(httpResponse.getEntity());
+//                ??
                 return strResult;
             }
-        }catch (ClientProtocolException e)
-        {
-            Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }catch (IOException e)
-        {
-            Toast.makeText(this, e.getMessage().toString(), Toast.LENGTH_SHORT);
-            e.printStackTrace();
         }catch (Exception e)
         {
-            Toast.makeText(this, e.getMessage().toString(),Toast.LENGTH_SHORT);
+//            Toast.makeText(this, e.getMessage().toString(),Toast.LENGTH_SHORT);
             e.printStackTrace();
         }
         return null;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
+    class sendPostRunnable implements Runnable
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        String strTxt = null;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
-            return true;
+        public sendPostRunnable(String strTxt) {
+            this.strTxt = strTxt;
         }
 
-        return super.onOptionsItemSelected(item);
+        public void run()
+        {
+            String result = sendPostDataToInternet(strTxt);
+            mhandler.obtainMessage(REFRESH_DATA, result).sendToTarget();
+        }
     }
 }
