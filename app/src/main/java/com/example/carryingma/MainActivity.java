@@ -61,16 +61,39 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 
     private String sendPostDataToInternet(String strTxt)
     {
-        String a="";
-        HttpPost httpPost = new HttpPost(uriAPI);
+        /*建立HTTP post連線*/
+        HttpPost httpRequest = new HttpPost(uriAPI);
+        /* Post運作傳送變數必須用NameValuePair[]陣列儲存*/
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("data", strTxt));
 
-//        try
-//        {
-//
-//        }
-        return a;
+        try
+        {
+//            發出HTTP Request
+            httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+//            取得HTTP Request
+            HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequest);
+//            若狀態碼為200 OK
+            if (httpResponse.getStatusLine().getStatusCode() == 200)
+            {
+//                取出回應字串
+                String strResult = EntityUtils.toString(httpResponse.getEntity());
+                return strResult;
+            }
+        }catch (ClientProtocolException e)
+        {
+            Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }catch (IOException e)
+        {
+            Toast.makeText(this, e.getMessage().toString(), Toast.LENGTH_SHORT);
+            e.printStackTrace();
+        }catch (Exception e)
+        {
+            Toast.makeText(this, e.getMessage().toString(),Toast.LENGTH_SHORT);
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -89,7 +112,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
             return true;
         }
 
