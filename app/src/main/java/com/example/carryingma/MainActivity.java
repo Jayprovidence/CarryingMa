@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 {
     private EditText txtMessage;
     private Button sendBtn;
-    private String uriAPI;
+    private String uriAPI = "http://0.0.0.0/httpPostTest.php";
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
