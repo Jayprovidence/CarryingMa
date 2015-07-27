@@ -21,6 +21,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.apache.http.Header;
+
 public class GCMLaunchActivity extends Activity {
     ProgressDialog prgDialog;
     RequestParams params = new RequestParams();
@@ -134,6 +136,30 @@ public class GCMLaunchActivity extends Activity {
         AsyncHttpClient client = new AsyncHttpClient();
         client.post(ApplicationConstants.APP_SERVER_URL, params,
                 new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        // Hide Progress Dialog
+                        prgDialog.hide();
+                        if (prgDialog != null) {
+                            prgDialog.dismiss();
+                        }
+                        Toast.makeText(applicationContext, "Reg Id shared successfully with Web App ", Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(applicationContext,
+                                GCMHomeActivity.class);
+                        i.putExtra("regId", regId);
+                        startActivity(i);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        // Hide Progress Dialog
+                        prgDialog.hide();
+                        if (prgDialog != null) {
+                            prgDialog.dismiss();
+                        }
+
+                    /*
                     // When the response returned by REST has Http
                     // response code '200'
                     @Override
@@ -157,13 +183,13 @@ public class GCMLaunchActivity extends Activity {
                     // response code other than '200' such as '404',
                     // '500' or '403' etc
                     @Override
-                    public void onFailure(int statusCode, Throwable error,
-                                          String content) {
+                    public void onFailure(int statusCode, Throwable error, String content) {
                         // Hide Progress Dialog
                         prgDialog.hide();
                         if (prgDialog != null) {
                             prgDialog.dismiss();
                         }
+                        */
                         // When Http response code is '404'
                         if (statusCode == 404) {
                             Toast.makeText(applicationContext,
