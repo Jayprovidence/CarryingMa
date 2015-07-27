@@ -21,7 +21,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-public class MainActivity extends Activity {
+public class GCMLaunchActivity extends Activity {
     ProgressDialog prgDialog;
     RequestParams params = new RequestParams();
     GoogleCloudMessaging gcmObj;
