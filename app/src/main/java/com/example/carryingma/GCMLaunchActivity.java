@@ -54,7 +54,7 @@ public class GCMLaunchActivity extends Activity {
                 Context.MODE_PRIVATE);
         String registrationId = prefs.getString(REG_ID, "");
         if (!TextUtils.isEmpty(registrationId)) {
-            Intent i = new Intent(applicationContext, HomeActivity.class);
+            Intent i = new Intent(applicationContext, GCMHomeActivity.class);
             i.putExtra("regId", registrationId);
             startActivity(i);
             finish();
