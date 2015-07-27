@@ -1,8 +1,9 @@
 package com.example.carryingma;
 
+import android.app.Activity;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HTTPPostActivity extends MainActivity implements View.OnClickListener {
+public class HTTPPostActivity extends Activity implements View.OnClickListener {
     private EditText txtMessage;
     private Button sendBtn;
     //SC server ip

@@ -1,11 +1,12 @@
 package com.example.carryingma;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class GCMHomeActivity extends GCMLaunchActivity {
+public class GCMHomeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
