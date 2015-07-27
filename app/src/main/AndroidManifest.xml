@@ -21,15 +21,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".httpPost"
+            android:name=".HTTPPostActivity"
             android:label="@string/title_activity_http_post" >
         </activity>
         <activity
-            android:name=".GCMhome"
+            android:name=".GCMHomeActivity"
             android:label="@string/title_activity_gcmhome" >
         </activity>
         <activity
-            android:name=".GCMlaunch"
+            android:name=".GCMLaunchActivity"
             android:label="@string/title_activity_gcmlaunch" >
         </activity>
     </application>

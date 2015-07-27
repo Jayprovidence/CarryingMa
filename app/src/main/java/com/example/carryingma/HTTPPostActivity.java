@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class httpPost extends MainActivity implements View.OnClickListener {
+public class HTTPPostActivity extends MainActivity implements View.OnClickListener {
     private EditText txtMessage;
     private Button sendBtn;
     //SC server ip
@@ -43,7 +43,7 @@ public class httpPost extends MainActivity implements View.OnClickListener {
                         result = (String) msg.obj;
                     if (result != null)
                         //toast out (display) data received
-                        Toast.makeText(httpPost.this, result, Toast.LENGTH_LONG).show();
+                        Toast.makeText(HTTPPostActivity.this, result, Toast.LENGTH_LONG).show();
                     break;
             }
         }

@@ -1,23 +1,22 @@
 package com.example.carryingma;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class GCMlaunch extends MainActivity {
+public class GCMHomeActivity extends GCMLaunchActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gcmlaunch);
+        setContentView(R.layout.activity_gcmhome);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_gcmlaunch, menu);
+        getMenuInflater().inflate(R.menu.menu_gcmhome, menu);
         return true;
     }
 

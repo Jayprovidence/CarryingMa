@@ -6,18 +6,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class GCMhome extends GCMlaunch {
+public class GCMLaunchActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gcmhome);
+        setContentView(R.layout.activity_gcmlaunch);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_gcmhome, menu);
+        getMenuInflater().inflate(R.menu.menu_gcmlaunch, menu);
         return true;
     }
 

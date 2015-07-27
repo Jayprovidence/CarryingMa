@@ -40,12 +40,12 @@ public class MainActivity extends ActionBarActivity {
 
     //Buttons action
     public void httpPostBtn (View view){
-        Intent intent = new Intent(this, httpPost.class);
+        Intent intent = new Intent(this, HTTPPostActivity.class);
         startActivity(intent);
     }
 
     public void GCMlaunchBtn (View view){
-        Intent intent = new Intent(this, GCMlaunch.class);
+        Intent intent = new Intent(this, GCMLaunchActivity.class);
         startActivity(intent);
     }
 }
