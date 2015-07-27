@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class GCMlaunch extends ActionBarActivity {
+public class GCMlaunch extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

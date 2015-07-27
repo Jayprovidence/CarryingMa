@@ -1,132 +1,51 @@
 package com.example.carryingma;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NavigableMap;
-
-
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-
-import android.os.Message;
-import android.os.Handler;
-import android.util.Log;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Button;
-import android.widget.Toast;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 
-public class MainActivity extends ActionBarActivity implements OnClickListener {
-    private EditText txtMessage;
-    private Button sendBtn;
-    //SC server ip
-    //private String uriAPI = "http://192.168.1.164/httpPostTest.php";
-    //Tuna server ip
-    private String uriAPI = "http://10.0.36.116/httpPostTest.php";
-
-    //message serial for "refresh page"
-    protected static final int REFRESH_DATA = 0x00000001;
-
-    //create a handler for UI thread, used for receiving other thread messages
-    Handler mhandler = new Handler() {
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                //receive data
-                case REFRESH_DATA:
-                    String result = null;
-                    if (msg.obj instanceof String)
-                        result = (String) msg.obj;
-                    if (result != null)
-                        //toast out (display) data received
-                        Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
-                    break;
-            }
-        }
-    };
+public class MainActivity extends ActionBarActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //set default layout xml file
         setContentView(R.layout.activity_main);
-
-        txtMessage = (EditText) findViewById(R.id.txt_message);
-        sendBtn = (Button) findViewById(R.id.send_bnt);
-
-        if (sendBtn != null)
-            sendBtn.setOnClickListener(this);
     }
 
-    public void onClick(View v) {
-        if (v == sendBtn) {
-            if (txtMessage != null) {
-                //dump message entered in EditText/txtMessage to msg
-                String msg = txtMessage.getEditableText().toString();
-
-                //start a thread. insert msg into a runnable
-                Thread t = new Thread(new sendPostRunnable(msg));
-                //start thread
-                t.start();
-            }
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
-    private String sendPostDataToInternet(String strTxt) {
-        //establish an http Post connection
-        HttpPost httpRequest = new HttpPost(uriAPI);
-        //Post connection need to be an ArrayList
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("data", strTxt));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-        try {
-            //send http request
-            httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-            //receive http request
-            HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequest);
-            //if StatusCode is 200
-            if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                //dump string to strResult
-                String strResult = EntityUtils.toString(httpResponse.getEntity());
-                //return string
-                return strResult;
-            }
-        } catch (Exception e) {
-            //Toast.makeText(this, e.getMessage().toString(),Toast.LENGTH_SHORT);
-            e.printStackTrace();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
-        return null;
+
+        return super.onOptionsItemSelected(item);
     }
 
-    class sendPostRunnable implements Runnable {
-        String strTxt = null;
+    //Buttons action
+    public void httpPostBtn (View view){
+        Intent intent = new Intent(this, httpPost.class);
+        startActivity(intent);
+    }
 
-        //set what string is going to send
-        public sendPostRunnable(String strTxt) {
-            this.strTxt = strTxt;
-        }
-
-        public void run() {
-            String result = sendPostDataToInternet(strTxt);
-            mhandler.obtainMessage(REFRESH_DATA, result).sendToTarget();
-        }
+    public void GCMlaunchBtn (View view){
+        Intent intent = new Intent(this, GCMlaunch.class);
+        startActivity(intent);
     }
 }
