@@ -27,7 +27,7 @@ public class GCMLaunchActivity extends Activity {
     GoogleCloudMessaging gcmObj;
     Context applicationContext;
     String regId = "";
-/////
+
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     AsyncTask<Void, Void, String> createRegIdTask;

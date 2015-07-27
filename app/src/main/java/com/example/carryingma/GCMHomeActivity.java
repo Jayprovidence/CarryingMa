@@ -18,7 +18,7 @@ public class GCMHomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_gcmhome);
 
         // Intent Message sent from Broadcast Receiver
         String str = getIntent().getStringExtra("msg");
