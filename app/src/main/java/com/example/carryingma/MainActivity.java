@@ -30,6 +30,10 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 
 public class MainActivity extends ActionBarActivity implements OnClickListener
 {
