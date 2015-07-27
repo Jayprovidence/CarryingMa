@@ -35,8 +35,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 
-public class MainActivity extends ActionBarActivity implements OnClickListener
-{
+public class MainActivity extends ActionBarActivity implements OnClickListener {
     private EditText txtMessage;
     private Button sendBtn;
     //SC server ip
@@ -44,93 +43,88 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
     //Tuna server ip
     private String uriAPI = "http://10.0.36.116/httpPostTest.php";
 
-    //    ?????????
+    //message serial for "refresh page"
     protected static final int REFRESH_DATA = 0x00000001;
-    //    ??UI Thread???Handler,?????Thread????
-    Handler mhandler = new Handler()
-    {
-        public void handleMessage(Message msg)
-        {
-            switch (msg.what)
-            {
+
+    //create a handler for UI thread, used for receiving other thread messages
+    Handler mhandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                //receive data
                 case REFRESH_DATA:
                     String result = null;
                     if (msg.obj instanceof String)
                         result = (String) msg.obj;
-                    if(result != null)
-                        Toast.makeText(MainActivity.this,result,Toast.LENGTH_LONG).show();
+                    if (result != null)
+                        //toast out (display) data received
+                        Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
                     break;
             }
         }
     };
+
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set default layout xml file
         setContentView(R.layout.activity_main);
 
-        txtMessage = (EditText)findViewById(R.id.txt_message);
-        sendBtn = (Button)findViewById(R.id.send_bnt);
+        txtMessage = (EditText) findViewById(R.id.txt_message);
+        sendBtn = (Button) findViewById(R.id.send_bnt);
 
         if (sendBtn != null)
             sendBtn.setOnClickListener(this);
     }
-    public void onClick(View v)
-    {
-        if(v == sendBtn)
-        {
-            if (txtMessage != null)
-            {
-//                ?????????
+
+    public void onClick(View v) {
+        if (v == sendBtn) {
+            if (txtMessage != null) {
+                //dump message entered in EditText/txtMessage to msg
                 String msg = txtMessage.getEditableText().toString();
 
-//                ????Thread??????????Runnable???Thread??
+                //start a thread. insert msg into a runnable
                 Thread t = new Thread(new sendPostRunnable(msg));
+                //start thread
                 t.start();
             }
         }
     }
 
-    private String sendPostDataToInternet(String strTxt)
-    {
-        /*??HTTP post??*/
+    private String sendPostDataToInternet(String strTxt) {
+        //establish an http Post connection
         HttpPost httpRequest = new HttpPost(uriAPI);
-        /* Post?????????NameValuePair[]????*/
+        //Post connection need to be an ArrayList
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("data", strTxt));
 
-        try
-        {
-//            ??HTTP Request
+        try {
+            //send http request
             httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-//            ??HTTP Request
+            //receive http request
             HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequest);
-//            ?????200 OK
-            if (httpResponse.getStatusLine().getStatusCode() == 200)
-            {
-//                ??????
+            //if StatusCode is 200
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                //dump string to strResult
                 String strResult = EntityUtils.toString(httpResponse.getEntity());
-//                ??
+                //return string
                 return strResult;
             }
-        }catch (Exception e)
-        {
-//            Toast.makeText(this, e.getMessage().toString(),Toast.LENGTH_SHORT);
+        } catch (Exception e) {
+            //Toast.makeText(this, e.getMessage().toString(),Toast.LENGTH_SHORT);
             e.printStackTrace();
         }
         return null;
     }
 
-    class sendPostRunnable implements Runnable
-    {
+    class sendPostRunnable implements Runnable {
         String strTxt = null;
 
+        //set what string is going to send
         public sendPostRunnable(String strTxt) {
             this.strTxt = strTxt;
         }
 
-        public void run()
-        {
+        public void run() {
             String result = sendPostDataToInternet(strTxt);
             mhandler.obtainMessage(REFRESH_DATA, result).sendToTarget();
         }
