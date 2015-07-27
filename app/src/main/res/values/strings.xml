@@ -8,4 +8,10 @@
     <string name="title_activity_gcmlaunch">GCMLaunch</string>
     <string name="title_activity_http_post">httpPost</string>
     <string name="title_activity_gcmhome">GCMhome</string>
+    <string name="welcome_txt">GCM App</string>
+    <string name="email">Email Address</string>
+    <string name="login">Register Me</string>
+    <string name="defaultmsg">Message sent by server will appear here.</string>
+    <string name="msg_title">Message</string>
+    <string name="user_title">Hello User</string>
 </resources>
