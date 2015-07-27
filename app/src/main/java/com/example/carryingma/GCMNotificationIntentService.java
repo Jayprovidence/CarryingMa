@@ -46,7 +46,7 @@ public class GCMNotificationIntentService extends IntentService {
     }
 
     private void sendNotification(String msg) {
-        Intent resultIntent = new Intent(this, HomeActivity.class);
+        Intent resultIntent = new Intent(this, GCMHomeActivity.class);
         resultIntent.putExtra("msg", msg);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
                 resultIntent, PendingIntent.FLAG_ONE_SHOT);
@@ -59,7 +59,7 @@ public class GCMNotificationIntentService extends IntentService {
         mNotifyBuilder = new NotificationCompat.Builder(this)
                 .setContentTitle("Alert")
                 .setContentText("You've received new message.")
-                .setSmallIcon(R.drawable.ic_launcher);
+                .setSmallIcon(R.mipmap.ic_launcher);
         // Set pending intent
         mNotifyBuilder.setContentIntent(resultPendingIntent);
 
