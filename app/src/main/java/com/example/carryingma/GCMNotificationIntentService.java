@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-/**
- * Created by ¤l³Ç on 2015/7/27.
- */
+
 public class GCMNotificationIntentService extends IntentService {
     // Sets an ID for the notification, so it can be updated
     public static final int notifyID = 9001;
