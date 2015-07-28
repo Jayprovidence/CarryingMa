@@ -27,7 +27,7 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
 
     private Spinner spinnerUser,spinnerExamDate;
     private TextView averageTextView;
-    private String[] user = {"A","B","C","D","E"};  //for testing, it will be that a member login and we will get his data from mysql
+    private String[] user = {"A","B","C","D","E","F","G"};  //for testing, it will be that a member login and we will get his data from mysql
     private String[] examDate = {"1","2","3","4","5","6","7"}; //for testing
     private ArrayAdapter<String> userAdapter,examDateAdapter;
     private String uriAPI = "http://10.0.36.116/php/updateExamDate.php";
@@ -89,7 +89,7 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
     private void findView() {
         spinnerUser = (Spinner)findViewById(R.id.spinnerUser);
         spinnerExamDate = (Spinner)findViewById(R.id.spinnerExamDate);
-        averageTextView = (TextView)findViewById(R.id.averageTextView);
+        averageTextView = (TextView)findViewById(R.id.modeTextView);
     }
 
     private void setSpinner() {
