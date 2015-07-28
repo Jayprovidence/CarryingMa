@@ -29,6 +29,10 @@
             android:label="@string/title_activity_gcmhome" >
         </activity>
         <activity
+            android:name=".GCMLaunchActivity"
+            android:label="@string/title_activity_gcmlaunch" >
+        </activity>
+        <activity
             android:name=".ExamTimeChangeActivity"
             android:label="@string/title_activity_exam_time_change" >
         </activity>
