@@ -48,4 +48,8 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, GCMLaunchActivity.class);
         startActivity(intent);
     }
+    public void ExamTimeChangeBtn(View view){
+        Intent intent = new Intent(this, ExamTimeChangeActivity.class);
+        startActivity(intent);
+    }
 }
