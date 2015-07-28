@@ -86,11 +86,9 @@ public class GCMLaunchActivity extends Activity {
                 String msg = "";
                 try {
                     if (gcmObj == null) {
-                        gcmObj = GoogleCloudMessaging
-                                .getInstance(applicationContext);
+                        gcmObj = GoogleCloudMessaging.getInstance(applicationContext);
                     }
-                    regId = gcmObj
-                            .register(ApplicationConstants.GOOGLE_PROJ_ID);
+                    regId = gcmObj.register(ApplicationConstants.GOOGLE_PROJ_ID); //crashed here
                     msg = "Registration ID :" + regId;
 
                 } catch (IOException ex) {
@@ -98,6 +96,7 @@ public class GCMLaunchActivity extends Activity {
                 }
                 return msg;
             }
+
 
             @Override
             protected void onPostExecute(String msg) {
