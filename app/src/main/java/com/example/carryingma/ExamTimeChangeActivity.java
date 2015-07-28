@@ -69,8 +69,9 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
             //Set the data about user and examDate then prepare to sent data to server
             examDateString = examDate[position];
         }
-        Toast.makeText(this, "User: " + userNameString+", Date:"+ examDateString, Toast.LENGTH_SHORT).show();
-
+        if( userNameString !=null && examDateString != null) {
+            Toast.makeText(this, "User: " + userNameString+", Date: "+ examDateString, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
