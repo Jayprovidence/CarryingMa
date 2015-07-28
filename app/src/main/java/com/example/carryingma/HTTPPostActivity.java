@@ -28,7 +28,7 @@ public class HTTPPostActivity extends Activity implements View.OnClickListener {
     //SC server ip
     //private String uriAPI = "http://192.168.1.164/httpPostTest.php";
     //Tuna server ip
-    private String uriAPI = "http://10.0.36.116/httpPostTest.php";
+    private String uriAPI = "http://10.0.36.116/php/httpPostTest.php";
 
     //message serial for "refresh page"
     protected static final int REFRESH_DATA = 0x00000001;
