@@ -63,13 +63,14 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Spinner spinner =(Spinner) parent;
         if(spinner.getId() == R.id.spinnerUser) {
-            Toast.makeText(this, "你選擇" + user[position], Toast.LENGTH_SHORT).show();
+            //Set the data about user and examDate then prepare to sent data to server
+            userNameString = user[position];
         }else if(spinner.getId() == R.id.spinnerExamDate) {
-            Toast.makeText(this, "你選擇" + examDate[position], Toast.LENGTH_SHORT).show();
+            //Set the data about user and examDate then prepare to sent data to server
+            examDateString = examDate[position];
         }
-        //Set the data about user and examDate then prepare to sent data to server
-        userNameString = user[position];
-        examDateString = examDate[position];
+        Toast.makeText(this, "User: " + userNameString+", Date:"+ examDateString, Toast.LENGTH_SHORT).show();
+
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
@@ -105,8 +106,8 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
         HttpPost httpRequest = new HttpPost(uriAPI);
         //Post connection need to be an ArrayList
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("user", userName));
-        params.add(new BasicNameValuePair("examTime", examDate));
+        params.add(new BasicNameValuePair("userName", userName));
+        params.add(new BasicNameValuePair("examDate", examDate));
 
         try {
             //send http request
