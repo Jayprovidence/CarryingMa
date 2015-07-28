@@ -16,6 +16,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -26,12 +27,13 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
 
     private Spinner spinnerUser,spinnerExamDate;
     private TextView averageTextView;
-    private String[] user = {"A","B","C","D","E"};
-    private String[] examDate = {"1","2","3","4","5","6","7"};
+    private String[] user = {"A","B","C","D","E"};  //for testing, it will be that a member login and we will get his data from mysql
+    private String[] examDate = {"1","2","3","4","5","6","7"}; //for testing
     private ArrayAdapter<String> userAdapter,examDateAdapter;
-    private String uriAPI = "http://10.0.36.116/php/mode.php";
+    private String uriAPI = "http://10.0.36.116/php/updateExamDate.php";
     static final int REFRESH_DATA = 0x00000001;
     private Handler mhandler;
+    private String userNameString, examDateString;  //data for sent
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
                             result = (String) msg.obj;
                         if (result != null)
                             //toast out (display) data received
-                            Toast.makeText(ExamTimeChangeActivity.this, result, Toast.LENGTH_LONG).show();
+                            Toast.makeText(ExamTimeChangeActivity.this, result, Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -65,29 +67,21 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
         }else if(spinner.getId() == R.id.spinnerExamDate) {
             Toast.makeText(this, "你選擇" + examDate[position], Toast.LENGTH_SHORT).show();
         }
-        setData();
+        //Set the data about user and examDate then prepare to sent data to server
+        userNameString = user[position];
+        examDateString = examDate[position];
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        //Do nothing
     }
 
     //Buttons action
     public void ChangeExamTimeBtn(View view) {
-        sentExamDate();
-    }
-
-    private void setData() {
-        //TODO: Set the data about user and examDate then prepare to sent data to server
-    }
-
-    private void sentExamDate() {
-        //TODO: Find the user and update his examDate
-            //start a thread. insert msg into a runnable
-            Thread t = new Thread(new sendPostRunnable());
-            //start thread
-            t.start();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        //Do nothing
+        //start a thread. insert msg into a runnable
+        Thread t = new Thread(new sendPostRunnable(userNameString, examDateString));
+        //start thread
+        t.start();
     }
 
     private void findView() {
@@ -106,12 +100,13 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
         spinnerExamDate.setOnItemSelectedListener(this);
     }
 
-    private String sendPostDataToInternet() {
+    private String sendPostDataToInternet(String userName, String examDate) {
         //establish an http Post connection
         HttpPost httpRequest = new HttpPost(uriAPI);
         //Post connection need to be an ArrayList
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        //params.add(new BasicNameValuePair("data", strTxt));
+        params.add(new BasicNameValuePair("user", userName));
+        params.add(new BasicNameValuePair("examTime", examDate));
 
         try {
             //send http request
@@ -132,8 +127,16 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
         return null;
     }
     class sendPostRunnable implements Runnable {
+        String userName = null;
+        String examDate = null;
+
+        //set what string is going to send
+        public sendPostRunnable(String userName, String examDate) {
+            this.userName = userName;
+            this.examDate = examDate;
+        }
         public void run() {
-            String result = sendPostDataToInternet();
+            String result = sendPostDataToInternet(userName, examDate);
             mhandler.obtainMessage(REFRESH_DATA, result).sendToTarget();
         }
     }
