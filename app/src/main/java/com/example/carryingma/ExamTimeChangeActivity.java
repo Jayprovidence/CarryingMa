@@ -1,6 +1,7 @@
 package com.example.carryingma;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,14 +27,16 @@ import java.util.List;
 public class ExamTimeChangeActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
     private Spinner spinnerUser,spinnerExamDate;
-    private TextView averageTextView;
+    private TextView modeTextView;
     private String[] user = {"A","B","C","D","E","F","G"};  //for testing, it will be that a member login and we will get his data from mysql
     private String[] examDate = {"1","2","3","4","5","6","7"}; //for testing
     private ArrayAdapter<String> userAdapter,examDateAdapter;
     private String uriAPI = "http://10.0.36.116/php/updateExamDate.php";
+    private String uriAPIMod = "http://10.0.36.116/php/mode.php";
     static final int REFRESH_DATA = 0x00000001;
     private Handler mhandler;
     private String userNameString, examDateString;  //data for sent
+    private static Toast toast[] = new Toast[2];    //this activity has 2 toast to show
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,7 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
                             result = (String) msg.obj;
                         if (result != null)
                             //toast out (display) data received
-                            Toast.makeText(ExamTimeChangeActivity.this, result, Toast.LENGTH_SHORT).show();
+                            makeTextAndShow(0, ExamTimeChangeActivity.this, result, Toast.LENGTH_SHORT);
                         break;
                 }
             }
@@ -70,7 +73,7 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
             examDateString = examDate[position];
         }
         if( userNameString !=null && examDateString != null) {
-            Toast.makeText(this, "User: " + userNameString+", Date: "+ examDateString, Toast.LENGTH_SHORT).show();
+            makeTextAndShow(1, ExamTimeChangeActivity.this, "User: " + userNameString + ", Date: " + examDateString, Toast.LENGTH_SHORT);
         }
     }
 
@@ -89,7 +92,7 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
     private void findView() {
         spinnerUser = (Spinner)findViewById(R.id.spinnerUser);
         spinnerExamDate = (Spinner)findViewById(R.id.spinnerExamDate);
-        averageTextView = (TextView)findViewById(R.id.modeTextView);
+        modeTextView = (TextView)findViewById(R.id.modeTextView);
     }
 
     private void setSpinner() {
@@ -105,6 +108,7 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
     private String sendPostDataToInternet(String userName, String examDate) {
         //establish an http Post connection
         HttpPost httpRequest = new HttpPost(uriAPI);
+        HttpPost httpMode = new HttpPost(uriAPIMod);
         //Post connection need to be an ArrayList
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("userName", userName));
@@ -115,6 +119,7 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
             httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
             //receive http request
             HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequest);
+            HttpResponse httpRMode = new DefaultHttpClient().execute(httpMode);
             //if StatusCode is 200
             if (httpResponse.getStatusLine().getStatusCode() == 200) {
                 //dump string to strResult
@@ -140,6 +145,17 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
         public void run() {
             String result = sendPostDataToInternet(userName, examDate);
             mhandler.obtainMessage(REFRESH_DATA, result).sendToTarget();
+        }
+    }
+    private static void makeTextAndShow(int i,  final Context context, final String text, final int duration) {
+        if(i<=toast.length && i>=0) {
+            if(toast[i] == null) {
+                toast[i] = android.widget.Toast.makeText(context, text, duration);
+            }else {
+                toast[i].setText(text);
+                toast[i].setDuration(duration);
+            }
+            toast[i].show();
         }
     }
 }
