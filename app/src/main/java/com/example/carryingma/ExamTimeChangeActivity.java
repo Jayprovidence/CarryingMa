@@ -93,6 +93,7 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
         spinnerUser = (Spinner)findViewById(R.id.spinnerUser);
         spinnerExamDate = (Spinner)findViewById(R.id.spinnerExamDate);
         modeTextView = (TextView)findViewById(R.id.modeTextView);
+        //TODO: get_mode.php connect goes here
     }
 
     private void setSpinner() {

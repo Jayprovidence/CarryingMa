@@ -40,7 +40,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world","hi@gmail.com:12345"
+            "foo@example.com:hello", "bar@example.com:world","hi@gmail.com:123"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -150,7 +150,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 2;
     }
 
     /**
