@@ -52,4 +52,8 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, ExamTimeChangeActivity.class);
         startActivity(intent);
     }
+    public void LoginBtn(View view){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
