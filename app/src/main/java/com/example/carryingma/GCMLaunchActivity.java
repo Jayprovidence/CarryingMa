@@ -1,7 +1,5 @@
 package com.example.carryingma;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -23,6 +21,8 @@ import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
 
+import java.io.IOException;
+
 public class GCMLaunchActivity extends Activity {
     ProgressDialog prgDialog;
     RequestParams params = new RequestParams();
@@ -34,7 +34,7 @@ public class GCMLaunchActivity extends Activity {
 
     AsyncTask<Void, Void, String> createRegIdTask;
 
-    public static final String REG_ID = "regId";
+    public static final String REG_ID = "carrying-ma-sc-gcm ";
     public static final String EMAIL_ID = "eMailId";
     EditText emailET;
 
