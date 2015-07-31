@@ -81,9 +81,13 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
+            android:name=".SampleLoginActivity"
+            android:label="@string/title_activity_samplelogin"
             android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login" >
         </activity>
     </application>
 
