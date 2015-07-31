@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
     public void LoginBtn(View view){
-        Intent intent = new Intent(this, SampleLoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

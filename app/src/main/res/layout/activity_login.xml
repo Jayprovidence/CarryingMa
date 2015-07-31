@@ -68,7 +68,8 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/bg_button_rounded"
             android:text="@string/login_btn"
-            android:textColor="@color/white" android:onClick="LoginBtn"/>
+            android:textColor="@color/white" android:onClick="LoginBtn"
+            android:id="@+id/LoginBtn"/>
     </LinearLayout>
 
 </RelativeLayout>
