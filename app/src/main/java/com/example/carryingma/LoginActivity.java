@@ -30,7 +30,7 @@ import java.util.List;
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
     private EditText txtUsr,txtPwd;
     private Button loginBtn;
-    private String uriAPI = "http://192.168.1.5/php/login.php";
+    private String uriAPI = "http://60.251.49.213:8888/php/login.php";
 
     //message serial for "refresh page"
     protected static final int REFRESH_DATA = 0x00000001;
