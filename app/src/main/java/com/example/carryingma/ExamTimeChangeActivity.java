@@ -31,9 +31,9 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
     private String[] user = {"A","B","C","D","E","F","G"};  //for testing, it will be that a member login and we will get his data from mysql
     private String[] examDate = {"1","2","3","4","5","6","7"}; //for testing
     private ArrayAdapter<String> userAdapter,examDateAdapter;
-    private String uriAPI = "http://10.0.36.116/php/updateExamDate.php";
-    private String uriAPIMode = "http://10.0.36.116/php/mode.php";
-    private String uriAPIGetMode = "http://10.0.36.116/php/get_mode.php";
+    private String uriAPI = "http://192.168.1.5/php/updateExamDate.php";
+    private String uriAPIMode = "http://192.168.1.5/php/mode.php";
+    private String uriAPIGetMode = "http://192.168.1.5/php/get_mode.php";
     static final int REFRESH_DATA = 0x00000001;
     private Handler mhandler, mhandler2;
     private String userNameString, examDateString;  //data for sent
