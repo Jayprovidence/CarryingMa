@@ -22,4 +22,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="ExamTimeChangeBtn"/>
+    <Button
+        android:id="@+id/LoginBtn"
+        android:text="@string/login_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="LoginBtn"/>
 </LinearLayout>
