@@ -123,8 +123,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             mhandler.obtainMessage(REFRESH_DATA, result).sendToTarget();
             String a = "Login success";
             if (result.equals(a)){
-                //TODO: replace MainActivity to desired activity
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this,UserExamActivity.class);
                 startActivity(intent);
             }
         }
