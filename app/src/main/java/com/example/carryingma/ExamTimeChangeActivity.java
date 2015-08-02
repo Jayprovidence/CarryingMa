@@ -47,7 +47,6 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
         setContentView(R.layout.activity_exam_time_change);
         findView();
         setSpinner();
-
         mhandler = new Handler() {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
@@ -71,13 +70,17 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
                         String modeValue = null;
                         if (msg.obj instanceof String)
                             modeValue = (String) msg.obj;
-                        if (modeValue != null)
+                        if (modeValue != null){
                             //toast out (display) data received
                             modeTextView.setText(modeValue);
+                            Definition.MODE_EAXM_DATE  = modeValue;
+                        }
                         break;
                 }
             }
         };
+
+
     }
 
     @Override
@@ -100,11 +103,16 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
     }
 
     //Buttons action
-    public void ChangeExamTimeBtn(View view) {
+    public void changeExamTimeBtn(View view) {
         //start a thread. insert msg into a runnable
         Thread t = new Thread(new sendPostRunnable(userNameString, examDateString));
         //start thread
         t.start();
+        Definition.USER_NAME = userNameString;
+        Definition.USER_EXAM_DATE = examDateString;
+    }
+    public void getNotificationBtn(View view) {
+        getNotification();
     }
 
     private void findView() {
@@ -182,6 +190,33 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
                 toast[i].setDuration(duration);
             }
             toast[i].show();
+        }
+    }
+
+    private void getNotification() {
+        if (Definition.USER_EXAM_DATE.equals(Definition.MODE_EAXM_DATE ) ==false && Definition.MODE_EAXM_DATE != null && Definition.USER_EXAM_DATE != null) {
+            NotificationDialog.OnSureClickListener listener = new NotificationDialog.OnSureClickListener()
+            {
+                @Override
+                public void chooseOkButton() { // chooseOkButton
+                    // change the user's examDate on Server
+                    //userNameString    // make sure the user is correct
+                    examDateString = Definition.MODE_EAXM_DATE;
+                    userNameString = Definition.USER_NAME;
+                    Definition.USER_EXAM_DATE = Definition.MODE_EAXM_DATE;   // make it same
+                    //start a thread. insert msg into a runnable
+                    Thread t1 = new Thread(new sendPostRunnable(userNameString, examDateString));
+                    t1.start();
+                }
+                @Override
+                public void chooseCancelButton() {
+                    //Do nothing
+                }
+            };
+            NotificationDialog dialog = new NotificationDialog(this, listener);
+            dialog.show();
+        }else {
+            Toast.makeText(this, "No Message", Toast.LENGTH_SHORT).show();
         }
     }
 }

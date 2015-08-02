@@ -39,15 +39,24 @@
         android:layout_alignTop="@+id/textView2"
         android:layout_toEndOf="@+id/textView2" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Mode : "
-        android:id="@+id/textView3"
-        android:layout_below="@+id/ChangeExamTimeBtn"
+        android:text="Change Exam Time"
+        android:id="@+id/changeExamTimeBtn"
+        android:onClick="changeExamTimeBtn"
+        android:layout_below="@+id/spinnerExamDate"
+        android:layout_toEndOf="@+id/modeTextView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New message?"
+        android:id="@+id/getNotificationBtn"
+        android:onClick="getNotificationBtn"
+        android:layout_below="@+id/modeTextView"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp" />
+        android:layout_marginTop="54dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,13 +67,14 @@
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change Exam Time"
-        android:id="@+id/ChangeExamTimeBtn"
-        android:onClick="ChangeExamTimeBtn"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Mode : "
+        android:id="@+id/textView3"
+        android:layout_below="@+id/changeExamTimeBtn"
+        android:layout_toEndOf="@+id/modeTextView"
+        android:layout_marginTop="60dp" />
 
 </RelativeLayout>
