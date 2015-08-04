@@ -28,4 +28,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="LoginBtn"/>
+    <Button
+        android:id="@+id/UserExamBtn"
+        android:text="@string/user_exam"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="UserExamBtn"/>
 </LinearLayout>
