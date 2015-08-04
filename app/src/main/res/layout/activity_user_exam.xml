@@ -25,12 +25,14 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true" />
 
-    <Spinner
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerUser"
-        android:layout_alignTop="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Hiiiii"
+        android:id="@+id/userTextView"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -47,16 +49,6 @@
         android:onClick="changeExamTimeBtn"
         android:layout_below="@+id/spinnerExamDate"
         android:layout_toEndOf="@+id/modeTextView" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New message?"
-        android:id="@+id/getNotificationBtn"
-        android:onClick="getNotificationBtn"
-        android:layout_below="@+id/modeTextView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="54dp" />
 
     <TextView
         android:layout_width="wrap_content"
