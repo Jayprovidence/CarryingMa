@@ -2,9 +2,11 @@ package com.example.carryingma;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,7 +30,7 @@ public class UserExamActivity extends Activity implements AdapterView.OnItemSele
 
     private Spinner spinnerExamDate;
     private TextView modeTextView;
-    private String[] user = {"A","B","C","D","E","F","G"};  //for testing, it will be that a member login and we will get his data from mysql
+    private String user = "";  //for testing, it will be that a member login and we will get his data from mysql
     private String[] examDate = {"1","2","3","4","5","6","7"}; //for testing
     private ArrayAdapter<String> examDateAdapter;
     private String uriAPI = "http://60.251.49.213:8888/php/updateExamDate.php";
@@ -41,12 +43,22 @@ public class UserExamActivity extends Activity implements AdapterView.OnItemSele
 
     private String modeValue;
 
+    public static String getDefaults(String key, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(key, null);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_exam);
         findView();
         setSpinner();
+        userNameString = getDefaults(getString(R.string.current_user), UserExamActivity.this);
+        //set userTextView to userNameString
+        TextView userName = (TextView) findViewById(R.id.userTextView);
+        userName.setText(userNameString);
+
         mhandler = new Handler() {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
@@ -61,6 +73,7 @@ public class UserExamActivity extends Activity implements AdapterView.OnItemSele
                         break;
                 }
             }
+
         };
         mhandler2 = new Handler() {
             public void handleMessage(Message msg) {

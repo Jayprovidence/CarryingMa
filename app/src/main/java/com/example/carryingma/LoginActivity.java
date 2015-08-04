@@ -3,9 +3,11 @@ package com.example.carryingma;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -108,6 +110,13 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         return null;
     }
 
+    public static void setDefaults(String key, String value, Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
+
     class sendPostUsr implements Runnable {
         String usr = null;
         String pwd = null;
@@ -122,8 +131,11 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             String result = sendPostDataToInternet(usr, pwd);
             mhandler.obtainMessage(REFRESH_DATA, result).sendToTarget();
             String a = "Login success";
-            if (result.equals(a)){
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+
+            if (result.equals(a)) {
+                setDefaults(getString(R.string.current_user), usr, LoginActivity.this);
+                //enter page after successful login
+                Intent intent = new Intent(LoginActivity.this, UserExamActivity.class);
                 startActivity(intent);
             }
         }
