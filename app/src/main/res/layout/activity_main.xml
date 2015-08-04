@@ -30,7 +30,7 @@
         android:onClick="LoginBtn"/>
     <Button
         android:id="@+id/UserExamBtn"
-        android:text="@string/user_exam"
+        android:text="@string/user_exam_btn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="UserExamBtn"/>
