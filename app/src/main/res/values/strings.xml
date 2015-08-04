@@ -20,7 +20,6 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_user_exam">UserExamActivity</string>
     <string name="user_exam_btn">UserExam</string>
-    <string name="current_user"></string>
-    <string name="current_user_default">Default</string>
+    <string name="current_user">null</string>
 
 </resources>

@@ -110,6 +110,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         return null;
     }
 
+    //save user name (usr) to a string file (current_user)
     public static void setDefaults(String key, String value, Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();

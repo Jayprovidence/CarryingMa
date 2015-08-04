@@ -43,6 +43,7 @@ public class UserExamActivity extends Activity implements AdapterView.OnItemSele
 
     private String modeValue;
 
+    //read user name from string (current_user)
     public static String getDefaults(String key, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(key, null);
@@ -54,6 +55,7 @@ public class UserExamActivity extends Activity implements AdapterView.OnItemSele
         setContentView(R.layout.activity_user_exam);
         findView();
         setSpinner();
+        //pull user name and save it to userNameString
         userNameString = getDefaults(getString(R.string.current_user), UserExamActivity.this);
         //set userTextView to userNameString
         TextView userName = (TextView) findViewById(R.id.userTextView);
