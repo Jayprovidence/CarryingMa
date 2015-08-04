@@ -138,6 +138,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 //enter page after successful login
                 Intent intent = new Intent(LoginActivity.this, UserExamActivity.class);
                 startActivity(intent);
+                finish();
             }
         }
     }

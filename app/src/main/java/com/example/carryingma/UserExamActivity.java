@@ -60,6 +60,7 @@ public class UserExamActivity extends Activity implements AdapterView.OnItemSele
         //set userTextView to userNameString
         TextView userName = (TextView) findViewById(R.id.userTextView);
         userName.setText(userNameString);
+        //TODO: BUG: when user press "back" button after logged in to this page, it will lead the user back to LoginActivity.
 
         mhandler = new Handler() {
             public void handleMessage(Message msg) {
