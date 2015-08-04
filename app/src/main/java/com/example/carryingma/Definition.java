@@ -5,7 +5,7 @@ package com.example.carryingma;
  */
 public class Definition {
     //Test for notification dialog, this is not a good solution!
-    public static String USER_NAME= null;
-    public static String USER_EXAM_DATE = null;
-    public static String MODE_EAXM_DATE = null;
+    public static String USER_NAME= "";
+    public static String USER_EXAM_DATE = "";
+    public static String MODE_EAXM_DATE = "";
 }

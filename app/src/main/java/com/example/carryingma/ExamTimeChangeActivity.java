@@ -194,7 +194,8 @@ public class ExamTimeChangeActivity extends Activity implements AdapterView.OnIt
     }
 
     private void getNotification() {
-        if (Definition.USER_EXAM_DATE.equals(Definition.MODE_EAXM_DATE ) ==false && Definition.MODE_EAXM_DATE != null && Definition.USER_EXAM_DATE != null) {
+        if (!(Definition.USER_EXAM_DATE.equals(Definition.MODE_EAXM_DATE )) && !("".equals(Definition.USER_EXAM_DATE.trim()))
+                && !("".equals(Definition.MODE_EAXM_DATE.trim())) && !("".equals(Definition.USER_NAME.trim()))) {
             NotificationDialog.OnSureClickListener listener = new NotificationDialog.OnSureClickListener()
             {
                 @Override
