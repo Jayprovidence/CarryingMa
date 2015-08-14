@@ -1,5 +1,6 @@
-package com.example.carryingma;
+package com.example.carryingma.GcmExample;
 
+import com.example.carryingma.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 

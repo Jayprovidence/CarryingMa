@@ -1,4 +1,4 @@
-package com.example.carryingma;
+package com.example.carryingma.GcmExample;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

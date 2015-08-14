@@ -1,4 +1,4 @@
-package com.example.carryingma;
+package com.example.carryingma.GcmExample;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
+import com.example.carryingma.R;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class GCMNotificationIntentService extends IntentService {

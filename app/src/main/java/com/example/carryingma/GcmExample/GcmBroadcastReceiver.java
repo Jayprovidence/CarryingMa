@@ -1,4 +1,4 @@
-package com.example.carryingma;
+package com.example.carryingma.GcmExample;
 
 import android.app.Activity;
 import android.content.ComponentName;

@@ -65,11 +65,11 @@
             android:label="@string/title_activity_http_post" >
         </activity>
         <activity
-            android:name=".GCMHomeActivity"
+            android:name=".GcmExample.GCMHomeActivity"
             android:label="@string/title_activity_gcmhome" >
         </activity>
         <activity
-            android:name=".GCMLaunchActivity"
+            android:name=".GcmExample.GCMLaunchActivity"
             android:label="@string/title_activity_gcmlaunch" >
         </activity>
         <activity
