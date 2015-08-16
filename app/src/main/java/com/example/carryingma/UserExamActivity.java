@@ -43,7 +43,7 @@ public class UserExamActivity extends Activity implements AdapterView.OnItemSele
 
     private String modeValue;
 
-    //read user name from string (current_user)
+    //read from strings (current_user)
     public static String getDefaults(String key, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(key, null);

@@ -34,4 +34,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="UserExamBtn"/>
+    <Button
+        android:id="@+id/GcmBtn"
+        android:text="@string/gcm_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="GcmBtn"/>
 </LinearLayout>

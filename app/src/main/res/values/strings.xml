@@ -20,6 +20,15 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_user_exam">UserExamActivity</string>
     <string name="user_exam_btn">UserExam</string>
-    <string name="current_user">null</string>
+    <string name="current_user">A</string>
+    <string name="gcm_btn">Gcm</string>
+    <string name="check_gcm_btn">CheckGcmBtn</string>
+    <string name="title_activity_gcm">GcmActivity</string>
+    <string name="gcm_send_message">Token retrieved and sent to server! You can now use gcmsender to
+        send downstream messages to this app.</string>
+    <string name="registering_message">Generating InstanceID token...</string>
+    <string name="token_error_message">An error occurred while either fetching the InstanceID token,
+        sending the fetched token to the server or subscribing to the PubSub topic. Please try
+        running the sample again.</string>
 
 </resources>

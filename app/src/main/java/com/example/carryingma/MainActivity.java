@@ -1,22 +1,33 @@
 package com.example.carryingma;
+//package com.android.wecarry;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
+import com.example.carryingma.GCM.QuickstartPreferences;
+import com.example.carryingma.GCM.RegistrationIntentService;
 import com.example.carryingma.GcmExample.GCMLaunchActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
+import java.io.IOException;
+
 
 public class MainActivity extends Activity {
-    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,21 +79,10 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, UserExamActivity.class);
         startActivity(intent);
     }
-
-    //Check if the device supports Google Play Services APK
-    //This check should be used in MainActivity's onCreate() and onResume()
-    private boolean checkPlayServices() {
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if (resultCode != ConnectionResult.SUCCESS) {
-            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
-                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
-                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
-            } else {
-                Log.i(TAG, "This device is not supported.");
-                finish();
-            }
-            return false;
-        }
-        return true;
+    public void GcmBtn(View view){
+        Intent intent = new Intent(this, GcmActivity.class);
+        startActivity(intent);
     }
+
+
 }
