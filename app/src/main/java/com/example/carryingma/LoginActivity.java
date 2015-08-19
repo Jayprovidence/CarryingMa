@@ -136,7 +136,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             if (result.equals(a)) {
                 setDefaults(getString(R.string.current_user), usr, LoginActivity.this);
                 //enter page after successful login
-                Intent intent = new Intent(LoginActivity.this, UserExamActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

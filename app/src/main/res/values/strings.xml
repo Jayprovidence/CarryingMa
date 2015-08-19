@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CarryingMa</string>
+    <string name="app_name">WeCarry</string>
     <string name="hello_world">Hello world!</string>
     <string name="help_txt">請輸入文字以便使用POST傳送:</string>
     <string name="txt_message_hint">請輸入文字</string>
@@ -20,7 +20,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_user_exam">UserExamActivity</string>
     <string name="user_exam_btn">UserExam</string>
-    <string name="current_user">A</string>
+    <string name="current_user">Admin</string>
     <string name="gcm_btn">Gcm</string>
     <string name="check_gcm_btn">CheckGcmBtn</string>
     <string name="title_activity_gcm">GcmActivity</string>

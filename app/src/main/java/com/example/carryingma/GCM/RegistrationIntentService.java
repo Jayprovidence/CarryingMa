@@ -17,23 +17,39 @@
 package com.example.carryingma.GCM;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.carryingma.MainActivity;
 import com.example.carryingma.R;
 import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
+
+    private String uriAPI = "http://60.251.49.213:8888/php/token.php";
 
     public RegistrationIntentService() {
         super(TAG);
@@ -80,17 +96,39 @@ public class RegistrationIntentService extends IntentService {
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
     }
 
-    /**
-     * Persist registration to third-party servers.
-     *
-     * Modify this method to associate the user's GCM registration token with any server-side account
-     * maintained by your application.
-     *
-     * @param token The new token.
-     */
-    private void sendRegistrationToServer(String token) {
-        // Add custom implementation, as needed.
+    public static String getDefaults(String key, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(key, null);
     }
+
+    private void sendRegistrationToServer(String token) {
+        String user = getDefaults(getString(R.string.current_user), RegistrationIntentService.this);;
+        //establish an http Post connection
+        HttpPost httpRequest = new HttpPost(uriAPI);
+        //Post connection need to be an ArrayList
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("token", token));
+        params.add(new BasicNameValuePair("user", user));
+
+        try {
+            //send http request
+            httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+            //receive http request
+            HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequest);
+            //if StatusCode is 200
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                //dump string to strResult
+                String strResult = EntityUtils.toString(httpResponse.getEntity());
+                //return string
+                //return strResult;
+            }
+        } catch (Exception e) {
+            //Toast.makeText(this, e.getMessage().toString(),Toast.LENGTH_SHORT);
+            e.printStackTrace();
+        }
+        //return null;
+    }
+
 
     /**
      * Subscribe to any GCM topics of interest, as defined by the TOPICS constant.

@@ -88,12 +88,4 @@ public class GcmActivity extends AppCompatActivity {
         }
         return true;
     }
-
-    /*public void CheckGcmBtn(View view) {
-        if (checkPlayServices()) {
-            // Start IntentService to register this application with GCM.
-            Intent intent = new Intent(this, Test.class);
-            startService(intent);
-        }
-    }*/
 }
