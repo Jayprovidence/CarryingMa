@@ -18,7 +18,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:gravity="center"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,6 +73,18 @@
             android:text="@string/login_btn"
             android:textColor="@color/white" android:onClick="LoginBtn"
             android:id="@+id/LoginBtn"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout"
+        android:layout_alignParentBottom="false"
+        android:gravity="center">
     </LinearLayout>
 
 </RelativeLayout>

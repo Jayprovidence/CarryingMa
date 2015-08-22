@@ -8,41 +8,40 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/httpPostBtn"
+        android:id="@+id/httppost_button"
         android:text="@string/title_activity_http_post"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="httpPostBtn"/>
+        android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/GCMlaunchBtn"
+        android:id="@+id/gcmlaunch_button"
         android:text="@string/title_activity_gcmlaunch"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="GCMlaunchBtn"/>
+        android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/ExamTimeChangeBtn"
+        android:id="@+id/examtimechange_button"
         android:text="@string/title_activity_exam_time_change"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="ExamTimeChangeBtn"/>
+        android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/LoginBtn"
+        android:id="@+id/login_button"
         android:text="@string/login_btn"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="LoginBtn"/>
+        android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/UserExamBtn"
+        android:id="@+id/userexam_button"
         android:text="@string/user_exam_btn"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="UserExamBtn"/>
+        android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/GcmBtn"
+        android:id="@+id/gcm_button"
         android:text="@string/gcm_btn"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="GcmBtn"/>
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <!-- GCM Stuff-->
     <TextView android:text="@string/registering_message" android:layout_width="wrap_content"

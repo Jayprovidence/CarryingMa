@@ -30,6 +30,7 @@ import java.util.List;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {
+
     private EditText txtUsr,txtPwd;
     private Button loginBtn;
     private String uriAPI = "http://60.251.49.213:8888/php/login.php";
