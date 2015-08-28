@@ -51,6 +51,7 @@
             android:theme="@style/NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -111,6 +112,21 @@
             android:name=".GCM.RegistrationIntentService"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".GcmExample.GooglePlayServicesActivity"
+            android:label="@string/title_activity_google_play_services" >
+        </activity>
+        <activity
+            android:name=".GoogleLoginActivity"
+            android:label="@string/title_activity_google_login"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".FBLogin"
+            android:label="@string/title_activity_fblogin"
+            android:theme="@style/NoActionBar">
+        </activity>
     </application>
 
 </manifest>

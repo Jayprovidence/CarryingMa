@@ -15,14 +15,11 @@
     <string name="msg_title">Message</string>
     <string name="user_title">Hello User</string>
     <string name="title_activity_exam_time_change">ExamTimeChangeActivity</string>
-    <string name="login_btn">Login</string>
     <string name="password">Password</string>
+    <string name="login_btn">Login</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_user_exam">UserExamActivity</string>
-    <string name="user_exam_btn">UserExam</string>
     <string name="current_user">Admin</string>
-    <string name="gcm_btn">Gcm</string>
-    <string name="check_gcm_btn">CheckGcmBtn</string>
     <string name="title_activity_gcm">GcmActivity</string>
     <string name="gcm_send_message">Token retrieved and sent to server!</string>
     <string name="registering_message">Generating InstanceID token...</string>
@@ -49,5 +46,9 @@
 
     <!-- Content Description for images -->
     <string name="desc_google_icon">Google Logo</string>
+    <string name="title_activity_new_login">NewLoginActivity</string>
+    <string name="title_activity_google_play_services">GooglePlayServicesActivity</string>
+    <string name="title_activity_google_login">ThirdPartyLoginActivity</string>
+    <string name="title_activity_fblogin">FBLogin</string>
 
 </resources>

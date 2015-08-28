@@ -2,8 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -28,74 +27,29 @@
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/login_button"
-            android:text="@string/login_btn"
+            android:text="@string/title_activity_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/userexam_button"
-            android:text="@string/user_exam_btn"
+            android:text="@string/title_activity_user_exam"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/gcm_button"
-            android:text="@string/gcm_btn"
+            android:text="@string/title_activity_gcm"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/status"
-            android:text="Signed out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/person_photo_url"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/person_profile_url"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/person_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <!--google sign in stuff-->
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            tools:visibility="gone"/>
-        <LinearLayout
-            android:id="@+id/sign_out_and_disconnect"
+        <Button
+            android:id="@+id/google_login_button"
+            android:text="@string/title_activity_google_login"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            tools:visibility="visible">
-            <Button
-                android:id="@+id/sign_out_button"
-                android:text="@string/sign_out"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:id="@+id/disconnect_button"
-                android:text="@string/disconnect"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-        <!-- GCM Stuff-->
-        <TextView android:text="@string/registering_message" android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/informationTextView"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/registrationProgressBar" />
-        <!-- End of GCM Stuff-->
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/fb_login_button"
+            android:text="@string/title_activity_fblogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>
 
