@@ -1,5 +1,5 @@
 package com.example.carryingma;
-//package com.android.wecarry;
+//package com.wecarry.android;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
